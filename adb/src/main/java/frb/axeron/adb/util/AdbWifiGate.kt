@@ -1,4 +1,4 @@
-package frb.axeron.adb.util
+package xyz.lazyghosty.phant0m.adb.util
 
 import android.Manifest.permission.WRITE_SECURE_SETTINGS
 import android.content.Context

@@ -26,7 +26,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AxManager"
+rootProject.name = "Phant0m"
 include(":manager")
 include(":server")
 include(":adb")

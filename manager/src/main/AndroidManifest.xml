@@ -27,12 +27,12 @@
         tools:node="remove" />
 
     <permission
-        android:name="frb.axeron.manager.permission.MANAGER"
+        android:name="xyz.lazyghosty.phant0m.permission.MANAGER"
         android:protectionLevel="signature" />
-    <uses-permission android:name="frb.axeron.manager.permission.MANAGER" />
+    <uses-permission android:name="xyz.lazyghosty.phant0m.permission.MANAGER" />
 
     <application
-        android:name=".AxeronApplication"
+        android:name=".Phant0mApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:debuggable="true"
@@ -44,7 +44,7 @@
         android:localeConfig="@xml/locales_config"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AxManager"
+        android:theme="@style/Theme.Phant0m"
         tools:ignore="HardcodedDebugMode"
         tools:targetApi="33">
 
@@ -84,9 +84,9 @@
             android:autoRemoveFromRecents="true"
             android:documentLaunchMode="intoExisting"
             android:exported="true"
-            android:theme="@style/Theme.AxManager.WebUI">
+            android:theme="@style/Theme.Phant0m.WebUI">
             <intent-filter>
-                <action android:name="AxManager.WEB_UI" />
+                <action android:name="Phant0m.WEB_UI" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -99,13 +99,13 @@
             android:taskAffinity=":toast"
             android:theme="@style/Theme.Transparent.NoUI">
             <intent-filter>
-                <action android:name="AxManager.TOAST" />
+                <action android:name="Phant0m.TOAST" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name="frb.axeron.server.shell.ShellRequestHandlerActivity"
+            android:name="frb.phant0m.server.shell.ShellRequestHandlerActivity"
             android:directBootAware="true"
             android:excludeFromRecents="true"
             android:exported="true"
@@ -117,7 +117,7 @@
         </activity>
 
         <receiver
-            android:name="frb.axeron.server.shell.BinderRequestReceiver"
+            android:name="frb.phant0m.server.shell.BinderRequestReceiver"
             android:directBootAware="true"
             android:enabled="true"
             android:exported="true"
@@ -128,7 +128,7 @@
         </receiver>
 
         <provider
-            android:name=".AxManagerProvider"
+            android:name=".Phant0mProvider"
             android:authorities="${applicationId}.server"
             android:directBootAware="true"
             android:enabled="true"
@@ -151,7 +151,7 @@
             android:directBootAware="true"
             android:enabled="true"
             android:exported="true"
-            android:permission="frb.axeron.manager.permission.MANAGER">
+            android:permission="xyz.lazyghosty.phant0m.permission.MANAGER">
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
@@ -161,9 +161,9 @@
         </receiver>
 
         <service
-            android:name=".features.quicksettings.AxeronTileService"
+            android:name=".features.quicksettings.Phant0mTileService"
             android:exported="true"
-            android:icon="@drawable/ic_axeron"
+            android:icon="@drawable/ic_phant0m"
             android:label="QuickAccess"
             android:permission="android.permission.BIND_QUICK_SETTINGS">
             <intent-filter>

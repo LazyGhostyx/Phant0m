@@ -1,11 +1,11 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.AxManager" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.Phant0m" parent="android:Theme.Material.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/orange</item>
     </style>
 
-    <style name="Theme.AxManager.WebUI" parent="Theme.AxManager">
+    <style name="Theme.Phant0m.WebUI" parent="Theme.Phant0m">
         <item name="android:windowLightStatusBar">true</item>
     </style>
 

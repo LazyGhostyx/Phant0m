@@ -5,10 +5,10 @@ plugins {
 }
 
 android {
-    namespace = "frb.axeron.reignite"
+    namespace = "frb.phant0m.reignite"
 
     defaultConfig {
-        applicationId = "frb.axeron.reignite"
+        applicationId = "frb.phant0m.reignite"
     }
 
     buildTypes {

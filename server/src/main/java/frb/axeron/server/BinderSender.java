@@ -1,4 +1,4 @@
-package frb.axeron.server;
+package xyz.lazyghosty.phant0m.server;
 
 import static android.app.ActivityManagerHidden.UID_OBSERVER_ACTIVE;
 import static android.app.ActivityManagerHidden.UID_OBSERVER_CACHED;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import frb.axeron.server.util.Logger;
+import frb.phant0m.server.util.Logger;
 import kotlin.collections.ArraysKt;
 import moe.shizuku.server.IShizukuService;
 import rikka.hidden.compat.ActivityManagerApis;
@@ -31,13 +31,13 @@ public class BinderSender {
 
     private static final Logger LOGGER = new Logger("BinderSender");
 
-    private static final String PERMISSION_MANAGER = "frb.axeron.manager.permission.MANAGER";
+    private static final String PERMISSION_MANAGER = "xyz.lazyghosty.phant0m.permission.MANAGER";
 
     private static final String SHIZUKU_PERMISSION_MANAGER = "moe.shizuku.manager.permission.MANAGER";
 
     private static final String PERMISSION = "moe.shizuku.manager.permission.API_V23";
 
-    private static IAxeronService axeronService;
+    private static IPhant0mService phant0mService;
 
     private static final Map<Integer, List<String>> UID_PACKAGE_CACHE = new ConcurrentHashMap<>();
     private static final Set<String> SENT_BINDERS = ConcurrentHashMap.newKeySet();
@@ -61,7 +61,7 @@ public class BinderSender {
 
         boolean isOurManager = packages.contains(ServerConstants.MANAGER_APPLICATION_ID);
 
-        IShizukuService shizukuService = axeronService.getShizukuService();
+        IShizukuService shizukuService = phant0mService.getShizukuService();
 
         // 🔒 secure fast-path
         if (shizukuService == null && isOurManager) {
@@ -69,7 +69,7 @@ public class BinderSender {
                     "Shizuku unavailable, uid %d belongs to manager, send binder directly",
                     uid
             );
-            AxeronService.sendBinderToManager(axeronService.asBinder(), userId);
+            Phant0mService.sendBinderToManager(phant0mService.asBinder(), userId);
             return;
         }
 
@@ -101,8 +101,8 @@ public class BinderSender {
                             == PackageManager.PERMISSION_GRANTED;
 
                     if (granted) {
-                        AxeronService.sendBinderToManager(
-                                axeronService.asBinder(),
+                        Phant0mService.sendBinderToManager(
+                                phant0mService.asBinder(),
                                 userId
                         );
                         return;
@@ -116,7 +116,7 @@ public class BinderSender {
                             == PackageManager.PERMISSION_GRANTED;
 
                     if (granted) {
-                        AxeronService.sendBinderToShizukuManager(
+                        Phant0mService.sendBinderToShizukuManager(
                                 shizukuService.asBinder(),
                                 userId
                         );
@@ -124,7 +124,7 @@ public class BinderSender {
                     }
 
                 } else if (ArraysKt.contains(pi.requestedPermissions, PERMISSION)) {
-                    AxeronService.sendBinderToUserApp(
+                    Phant0mService.sendBinderToUserApp(
                             shizukuService.asBinder(),
                             packageName,
                             userId
@@ -167,7 +167,7 @@ public class BinderSender {
 //                        granted = ActivityManagerApis.checkPermission(PERMISSION_MANAGER, pid, uid) == PackageManager.PERMISSION_GRANTED;
 //
 //                    if (granted) {
-//                        AxeronService.sendBinderToManager(axeronService.asBinder(), userId);
+//                        Phant0mService.sendBinderToManager(phant0mService.asBinder(), userId);
 //                        return;
 //                    }
 //                } else if (ArraysKt.contains(pi.requestedPermissions, SHIZUKU_PERMISSION_MANAGER)) {
@@ -178,15 +178,15 @@ public class BinderSender {
 //                        granted = ActivityManagerApis.checkPermission(SHIZUKU_PERMISSION_MANAGER, pid, uid) == PackageManager.PERMISSION_GRANTED;
 //
 //                    if (granted) {
-//                        IShizukuService shizukuService = axeronService.getShizukuService();
+//                        IShizukuService shizukuService = phant0mService.getShizukuService();
 //                        if (shizukuService != null)
-//                            AxeronService.sendBinderToShizukuManager(shizukuService.asBinder(), userId);
+//                            Phant0mService.sendBinderToShizukuManager(shizukuService.asBinder(), userId);
 //                        return;
 //                    }
 //                } else if (ArraysKt.contains(pi.requestedPermissions, PERMISSION)) {
-//                    IShizukuService shizukuService = axeronService.getShizukuService();
+//                    IShizukuService shizukuService = phant0mService.getShizukuService();
 //                    if (shizukuService != null) {
-//                        AxeronService.sendBinderToUserApp(shizukuService.asBinder(), packageName, userId);
+//                        Phant0mService.sendBinderToUserApp(shizukuService.asBinder(), packageName, userId);
 //                    }
 //                    return;
 //                }
@@ -196,8 +196,8 @@ public class BinderSender {
 //        }
 //    }
 
-    public static void register(IAxeronService service) {
-        axeronService = service;
+    public static void register(IPhant0mService service) {
+        phant0mService = service;
 
         try {
             ActivityManagerApis.registerProcessObserver(new ProcessObserver());

@@ -1,4 +1,4 @@
-package frb.axeron.adb
+package xyz.lazyghosty.phant0m.adb
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun adbError(message: Any): Nothing = throw AdbException(message.toString())

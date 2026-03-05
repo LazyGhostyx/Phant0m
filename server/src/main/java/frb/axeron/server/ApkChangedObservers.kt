@@ -1,4 +1,4 @@
-package frb.axeron.server
+package xyz.lazyghosty.phant0m.server
 
 import android.os.Build
 import android.os.FileObserver
@@ -99,12 +99,12 @@ class ApkChangedObserver : FileObserver {
 
     override fun startWatching() {
         super.startWatching()
-        Log.d("AxeronServer", "start watching $path")
+        Log.d("Phant0mServer", "start watching $path")
     }
 
     override fun stopWatching() {
         super.stopWatching()
-        Log.d("AxeronServer", "stop watching $path")
+        Log.d("Phant0mServer", "stop watching $path")
     }
 }
 

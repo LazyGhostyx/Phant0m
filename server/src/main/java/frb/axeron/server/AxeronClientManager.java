@@ -1,8 +1,8 @@
-package frb.axeron.server;
+package xyz.lazyghosty.phant0m.server;
 
-public class AxeronClientManager extends ClientManager<AxeronConfigManager> {
+public class Phant0mClientManager extends ClientManager<Phant0mConfigManager> {
 
-    public AxeronClientManager(AxeronConfigManager configManager) {
+    public Phant0mClientManager(Phant0mConfigManager configManager) {
         super(configManager);
     }
 }

@@ -1,4 +1,4 @@
-package frb.axeron.server
+package xyz.lazyghosty.phant0m.server
 
 import android.Manifest.permission.WRITE_SECURE_SETTINGS
 import android.app.ActivityThread
@@ -28,33 +28,33 @@ import android.os.UserHandle
 import android.os.UserHandleHidden
 import android.system.Os
 import dev.rikka.tools.refine.Refine
-import frb.axeron.server.ServerConstants.MANAGER_APPLICATION_ID
-import frb.axeron.server.ServerConstants.PERMISSION
-import frb.axeron.server.ServerConstants.SHIZUKU_MANAGER_APPLICATION_ID
-import frb.axeron.server.api.RemoteProcessHolder
-import frb.axeron.server.util.HandlerUtil
-import frb.axeron.server.util.IContentProviderCompat
-import frb.axeron.server.util.OsUtils
-import frb.axeron.server.util.UserHandleCompat
-import frb.axeron.shared.AxeronApiConstant
-import frb.axeron.shared.AxeronApiConstant.server.BINDER_DESCRIPTOR
-import frb.axeron.shared.AxeronApiConstant.server.TYPE_ENV
-import frb.axeron.shared.AxeronApiConstant.server.TYPE_NEW_ENV
-import frb.axeron.shared.AxeronApiConstant.server.VERSION_CODE
-import frb.axeron.shared.AxeronApiConstant.server.VERSION_NAME
-import frb.axeron.shared.PathHelper
-import frb.axeron.shared.ShizukuApiConstant.ATTACH_APPLICATION_API_VERSION
-import frb.axeron.shared.ShizukuApiConstant.ATTACH_APPLICATION_PACKAGE_NAME
-import frb.axeron.shared.ShizukuApiConstant.BIND_APPLICATION_PERMISSION_GRANTED
-import frb.axeron.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_PATCH_VERSION
-import frb.axeron.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_SECONTEXT
-import frb.axeron.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_UID
-import frb.axeron.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_VERSION
-import frb.axeron.shared.ShizukuApiConstant.BIND_APPLICATION_SHOULD_SHOW_REQUEST_PERMISSION_RATIONALE
-import frb.axeron.shared.ShizukuApiConstant.REQUEST_PERMISSION_REPLY_ALLOWED
-import frb.axeron.shared.ShizukuApiConstant.REQUEST_PERMISSION_REPLY_IS_ONETIME
-import frb.axeron.shared.ShizukuApiConstant.SHIZUKU_SERVER_PATCH_VERSION
-import frb.axeron.shared.ShizukuApiConstant.SHIZUKU_SERVER_VERSION
+import frb.phant0m.server.ServerConstants.MANAGER_APPLICATION_ID
+import frb.phant0m.server.ServerConstants.PERMISSION
+import frb.phant0m.server.ServerConstants.SHIZUKU_MANAGER_APPLICATION_ID
+import frb.phant0m.server.api.RemoteProcessHolder
+import frb.phant0m.server.util.HandlerUtil
+import frb.phant0m.server.util.IContentProviderCompat
+import frb.phant0m.server.util.OsUtils
+import frb.phant0m.server.util.UserHandleCompat
+import frb.phant0m.shared.Phant0mApiConstant
+import frb.phant0m.shared.Phant0mApiConstant.server.BINDER_DESCRIPTOR
+import frb.phant0m.shared.Phant0mApiConstant.server.TYPE_ENV
+import frb.phant0m.shared.Phant0mApiConstant.server.TYPE_NEW_ENV
+import frb.phant0m.shared.Phant0mApiConstant.server.VERSION_CODE
+import frb.phant0m.shared.Phant0mApiConstant.server.VERSION_NAME
+import frb.phant0m.shared.PathHelper
+import frb.phant0m.shared.ShizukuApiConstant.ATTACH_APPLICATION_API_VERSION
+import frb.phant0m.shared.ShizukuApiConstant.ATTACH_APPLICATION_PACKAGE_NAME
+import frb.phant0m.shared.ShizukuApiConstant.BIND_APPLICATION_PERMISSION_GRANTED
+import frb.phant0m.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_PATCH_VERSION
+import frb.phant0m.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_SECONTEXT
+import frb.phant0m.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_UID
+import frb.phant0m.shared.ShizukuApiConstant.BIND_APPLICATION_SERVER_VERSION
+import frb.phant0m.shared.ShizukuApiConstant.BIND_APPLICATION_SHOULD_SHOW_REQUEST_PERMISSION_RATIONALE
+import frb.phant0m.shared.ShizukuApiConstant.REQUEST_PERMISSION_REPLY_ALLOWED
+import frb.phant0m.shared.ShizukuApiConstant.REQUEST_PERMISSION_REPLY_IS_ONETIME
+import frb.phant0m.shared.ShizukuApiConstant.SHIZUKU_SERVER_PATCH_VERSION
+import frb.phant0m.shared.ShizukuApiConstant.SHIZUKU_SERVER_VERSION
 import moe.shizuku.api.BinderContainer
 import moe.shizuku.server.IRemoteProcess
 import moe.shizuku.server.IShizukuApplication
@@ -73,18 +73,18 @@ import java.lang.ref.WeakReference
 import kotlin.system.exitProcess
 
 
-open class AxeronService :
-    Service<AxeronUserServiceManager, AxeronClientManager, AxeronConfigManager>() {
+open class Phant0mService :
+    Service<Phant0mUserServiceManager, Phant0mClientManager, Phant0mConfigManager>() {
 
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            DdmHandleAppName.setAppName("axeron_server", 0)
-            RishConfig.setLibraryPath(System.getProperty("axeron.library.path"))
+            DdmHandleAppName.setAppName("phant0m_server", 0)
+            RishConfig.setLibraryPath(System.getProperty("phant0m.library.path"))
 
             @Suppress("DEPRECATION")
             Looper.prepareMainLooper()
-            AxeronService()
+            Phant0mService()
             Looper.loop()
         }
 
@@ -237,33 +237,33 @@ open class AxeronService :
             if (cached != null) return cached
 
             val built = Environment.Builder(false)
-                .put("AXERON", "true")
-                .put("HOSTNAME", "axeron")
+                .put("PHANT0M", "true")
+                .put("HOSTNAME", "phant0m")
                 .put(
-                    "AXERONDIR",
-                    PathHelper.getWorkingPath(isRoot, AxeronApiConstant.folder.PARENT).absolutePath
+                    "PHANT0MDIR",
+                    PathHelper.getWorkingPath(isRoot, Phant0mApiConstant.folder.PARENT).absolutePath
                 )
                 .put(
-                    "AXERONBIN",
+                    "PHANT0MBIN",
                     PathHelper.getWorkingPath(
                         isRoot,
-                        AxeronApiConstant.folder.PARENT_BINARY
+                        Phant0mApiConstant.folder.PARENT_BINARY
                     ).absolutePath
                 )
                 .put(
-                    "AXERONXBIN",
+                    "PHANT0MXBIN",
                     PathHelper.getWorkingPath(
                         isRoot,
-                        AxeronApiConstant.folder.PARENT_EXTERNAL_BINARY
+                        Phant0mApiConstant.folder.PARENT_EXTERNAL_BINARY
                     ).absolutePath
                 )
-                .put("AXERONLIB", getManagerApplicationInfo()?.nativeLibraryDir)
-                .put("AXERONVER", VERSION_CODE.toString())
+                .put("PHANT0MLIB", getManagerApplicationInfo()?.nativeLibraryDir)
+                .put("PHANT0MVER", VERSION_CODE.toString())
                 .put(
                     "TMPDIR",
-                    PathHelper.getWorkingPath(isRoot,AxeronApiConstant.folder.PARENT_CACHE).absolutePath
+                    PathHelper.getWorkingPath(isRoot,Phant0mApiConstant.folder.PARENT_CACHE).absolutePath
                 )
-                .put("PATH", $$"$AXERONXBIN:$PATH:$AXERONBIN")
+                .put("PATH", $$"$PHANT0MXBIN:$PATH:$PHANT0MBIN")
                 .build()
             cachedDefaultEnv = built
             return built
@@ -276,8 +276,8 @@ open class AxeronService :
         LOGGER.i("Acquire wakelock")
         try {
             val flags = PowerManager.PARTIAL_WAKE_LOCK
-            val tag = "axeron::wakelock"
-            val pkg = "axeron_server"
+            val tag = "phant0m::wakelock"
+            val pkg = "phant0m_server"
             val uid = Os.getuid()
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -303,16 +303,16 @@ open class AxeronService :
         }
     }
 
-    override fun onCreateUserServiceManager(): AxeronUserServiceManager {
-        return AxeronUserServiceManager(getEnvironment(TYPE_ENV)?.getEnv())
+    override fun onCreateUserServiceManager(): Phant0mUserServiceManager {
+        return Phant0mUserServiceManager(getEnvironment(TYPE_ENV)?.getEnv())
     }
 
-    override fun onCreateClientManager(): AxeronClientManager {
-        return AxeronClientManager(configManager)
+    override fun onCreateClientManager(): Phant0mClientManager {
+        return Phant0mClientManager(configManager)
     }
 
-    override fun onCreateConfigManager(): AxeronConfigManager {
-        return AxeronConfigManager()
+    override fun onCreateConfigManager(): Phant0mConfigManager {
+        return Phant0mConfigManager()
     }
 
     @Synchronized
@@ -350,7 +350,7 @@ open class AxeronService :
 
     val axCompanion =
         File(
-            PathHelper.getWorkingPath(isRoot, AxeronApiConstant.folder.PARENT),
+            PathHelper.getWorkingPath(isRoot, Phant0mApiConstant.folder.PARENT),
             "ax_perm_companion"
         )
 
@@ -816,7 +816,7 @@ open class AxeronService :
 
     @Synchronized
     private fun getFlagsForUidInternal(uid: Int, mask: Int): Int {
-        val entry: AxeronConfig.PackageEntry? = configManager.find(uid)
+        val entry: Phant0mConfig.PackageEntry? = configManager.find(uid)
         if (entry != null) {
             return entry.flags and mask
         }

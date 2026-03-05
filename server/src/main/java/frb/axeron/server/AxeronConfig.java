@@ -1,4 +1,4 @@
-package frb.axeron.server;
+package xyz.lazyghosty.phant0m.server;
 
 import androidx.annotation.NonNull;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AxeronConfig {
+public class Phant0mConfig {
 
     public static final int LATEST_VERSION = 2;
 
@@ -17,10 +17,10 @@ public class AxeronConfig {
     @SerializedName("packages")
     public List<PackageEntry> packages = new ArrayList<>();
 
-    public AxeronConfig() {
+    public Phant0mConfig() {
     }
 
-    public AxeronConfig(@NonNull List<PackageEntry> packages) {
+    public Phant0mConfig(@NonNull List<PackageEntry> packages) {
         this.version = LATEST_VERSION;
         this.packages = packages;
     }

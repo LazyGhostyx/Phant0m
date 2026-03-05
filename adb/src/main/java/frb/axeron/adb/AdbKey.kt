@@ -1,4 +1,4 @@
-package frb.axeron.adb
+package xyz.lazyghosty.phant0m.adb
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences

@@ -1,6 +1,6 @@
-package frb.axeron.server;
+package xyz.lazyghosty.phant0m.server;
 
-import static frb.axeron.server.util.HandlerUtil.getMainHandler;
+import static frb.phant0m.server.util.HandlerUtil.getMainHandler;
 
 import android.content.pm.PackageInfo;
 import android.util.ArrayMap;
@@ -11,23 +11,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import frb.axeron.starter.ServiceStarter;
+import frb.phant0m.starter.ServiceStarter;
 import rikka.hidden.compat.PackageManagerApis;
 import rikka.hidden.compat.UserManagerApis;
 
-public class AxeronUserServiceManager extends UserServiceManager {
+public class Phant0mUserServiceManager extends UserServiceManager {
 
     private final Map<UserServiceRecord, ApkChangedListener> apkChangedListeners = new ArrayMap<>();
     private final Map<String, List<UserServiceRecord>> userServiceRecords = Collections.synchronizedMap(new ArrayMap<>());
 
 
-    public AxeronUserServiceManager(String[] env) {
+    public Phant0mUserServiceManager(String[] env) {
         super(env);
     }
 
     @Override
     public String[] getUserServiceCmd() {
-        String busybox = Objects.requireNonNull(AxeronService.getManagerApplicationInfo()).nativeLibraryDir + "/libbusybox.so";
+        String busybox = Objects.requireNonNull(Phant0mService.getManagerApplicationInfo()).nativeLibraryDir + "/libbusybox.so";
         return new String[]{busybox, "setsid", "sh"};
     }
 
@@ -45,7 +45,7 @@ public class AxeronUserServiceManager extends UserServiceManager {
         LOGGER.i("ShizukuUserServiceManager.getUserServiceStartCmd: appProcess=%s", appProcess);
         return ServiceStarter.commandForUserService(
                 appProcess,
-                Objects.requireNonNull(AxeronService.getManagerApplicationInfo()).sourceDir,
+                Objects.requireNonNull(Phant0mService.getManagerApplicationInfo()).sourceDir,
                 token, packageName, classname, processNameSuffix, callingUid, debug);
     }
 

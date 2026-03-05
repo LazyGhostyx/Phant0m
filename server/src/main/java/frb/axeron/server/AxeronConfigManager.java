@@ -1,6 +1,6 @@
-package frb.axeron.server;
+package xyz.lazyghosty.phant0m.server;
 
-import static frb.axeron.server.ServerConstants.PERMISSION;
+import static frb.phant0m.server.ServerConstants.PERMISSION;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -24,26 +24,26 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import frb.axeron.ktx.HandlerKt;
-import frb.axeron.shared.AxeronApiConstant;
-import frb.axeron.shared.PathHelper;
+import frb.phant0m.ktx.HandlerKt;
+import frb.phant0m.shared.Phant0mApiConstant;
+import frb.phant0m.shared.PathHelper;
 import kotlin.collections.ArraysKt;
 import rikka.hidden.compat.PackageManagerApis;
 import rikka.hidden.compat.UserManagerApis;
 
-public class AxeronConfigManager extends ConfigManager {
+public class Phant0mConfigManager extends ConfigManager {
 
     private static final Gson GSON_IN = new GsonBuilder()
             .create();
     private static final Gson GSON_OUT = new GsonBuilder()
-            .setVersion(AxeronConfig.LATEST_VERSION)
+            .setVersion(Phant0mConfig.LATEST_VERSION)
             .create();
 
     private static final long WRITE_DELAY = 10 * 1000;
 
-    private static final File FILE = PathHelper.getWorkingPath(Os.getuid() == 0,AxeronApiConstant.folder.PARENT + "ax_permission.json");
+    private static final File FILE = PathHelper.getWorkingPath(Os.getuid() == 0,Phant0mApiConstant.folder.PARENT + "ax_permission.json");
     private static final AtomicFile ATOMIC_FILE = new AtomicFile(FILE);
-    private final AxeronConfig config;
+    private final Phant0mConfig config;
     private final Runnable mWriteRunner = new Runnable() {
 
         @Override
@@ -52,7 +52,7 @@ public class AxeronConfigManager extends ConfigManager {
         }
     };
 
-    public AxeronConfigManager() {
+    public Phant0mConfigManager() {
         this.config = load();
 
         boolean changed = false;
@@ -62,7 +62,7 @@ public class AxeronConfigManager extends ConfigManager {
             changed = true;
         }
 
-        for (AxeronConfig.PackageEntry entry : new ArrayList<>(config.packages)) {
+        for (Phant0mConfig.PackageEntry entry : new ArrayList<>(config.packages)) {
             if (entry.packages == null) {
                 entry.packages = new ArrayList<>();
             }
@@ -111,7 +111,7 @@ public class AxeronConfigManager extends ConfigManager {
 
                 int uid = pi.applicationInfo.uid;
                 String pkg = pi.packageName;
-                AxeronConfig.PackageEntry entry = findLocked(uid);
+                Phant0mConfig.PackageEntry entry = findLocked(uid);
                 boolean allowed = false;
 
                 if (entry != null) {
@@ -131,18 +131,18 @@ public class AxeronConfigManager extends ConfigManager {
         }
     }
 
-    public static AxeronConfig load() {
+    public static Phant0mConfig load() {
         FileInputStream stream;
         try {
             stream = ATOMIC_FILE.openRead();
         } catch (FileNotFoundException e) {
             LOGGER.i("no existing config file " + ATOMIC_FILE.getBaseFile() + "; starting empty");
-            return new AxeronConfig();
+            return new Phant0mConfig();
         }
 
-        AxeronConfig config = null;
+        Phant0mConfig config = null;
         try {
-            config = GSON_IN.fromJson(new InputStreamReader(stream), AxeronConfig.class);
+            config = GSON_IN.fromJson(new InputStreamReader(stream), Phant0mConfig.class);
         } catch (Throwable tr) {
             LOGGER.w(tr, "load config");
         } finally {
@@ -153,10 +153,10 @@ public class AxeronConfigManager extends ConfigManager {
             }
         }
         if (config != null) return config;
-        return new AxeronConfig();
+        return new Phant0mConfig();
     }
 
-    public static void write(AxeronConfig config) {
+    public static void write(Phant0mConfig config) {
         synchronized (ATOMIC_FILE) {
             FileOutputStream stream;
             try {
@@ -190,8 +190,8 @@ public class AxeronConfigManager extends ConfigManager {
         HandlerKt.getWorkerHandler().postDelayed(mWriteRunner, WRITE_DELAY);
     }
 
-    private AxeronConfig.PackageEntry findLocked(int uid) {
-        for (AxeronConfig.PackageEntry entry : config.packages) {
+    private Phant0mConfig.PackageEntry findLocked(int uid) {
+        for (Phant0mConfig.PackageEntry entry : config.packages) {
             if (uid == entry.uid) {
                 return entry;
             }
@@ -201,18 +201,18 @@ public class AxeronConfigManager extends ConfigManager {
 
     @Nullable
     @Override
-    public AxeronConfig.PackageEntry find(int uid) {
+    public Phant0mConfig.PackageEntry find(int uid) {
         synchronized (this) {
             return findLocked(uid);
         }
     }
 
     @Nullable
-    public AxeronConfig.PackageEntry findOrUpdate(int uid) {
+    public Phant0mConfig.PackageEntry findOrUpdate(int uid) {
         synchronized (this) {
-            AxeronConfig.PackageEntry entry = findLocked(uid);
+            Phant0mConfig.PackageEntry entry = findLocked(uid);
             if (entry == null) {
-                entry = new AxeronConfig.PackageEntry(uid, ConfigManager.MASK_PERMISSION & ConfigManager.FLAG_DENIED);
+                entry = new Phant0mConfig.PackageEntry(uid, ConfigManager.MASK_PERMISSION & ConfigManager.FLAG_DENIED);
                 entry.packages.addAll(PackageManagerApis.getPackagesForUidNoThrow(uid));
                 config.packages.add(entry);
             }
@@ -221,9 +221,9 @@ public class AxeronConfigManager extends ConfigManager {
     }
 
     private void updateLocked(int uid, List<String> packages, int mask, int values) {
-        AxeronConfig.PackageEntry entry = findLocked(uid);
+        Phant0mConfig.PackageEntry entry = findLocked(uid);
         if (entry == null) {
-            entry = new AxeronConfig.PackageEntry(uid, mask & values);
+            entry = new Phant0mConfig.PackageEntry(uid, mask & values);
             config.packages.add(entry);
         } else {
             int newValue = (entry.flags & ~mask) | (mask & values);
@@ -250,7 +250,7 @@ public class AxeronConfigManager extends ConfigManager {
     }
 
     private void removeLocked(int uid) {
-        AxeronConfig.PackageEntry entry = findLocked(uid);
+        Phant0mConfig.PackageEntry entry = findLocked(uid);
         if (entry == null) {
             return;
         }

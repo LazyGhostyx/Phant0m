@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'frb.axeron.server.stub'
+    namespace 'frb.phant0m.server.stub'
     buildFeatures {
         buildConfig false
     }

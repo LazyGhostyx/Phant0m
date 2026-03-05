@@ -1,7 +1,7 @@
-package frb.axeron.starter;
+package xyz.lazyghosty.phant0m.starter;
 
-import static frb.axeron.shared.ShizukuApiConstant.USER_SERVICE_ARG_PGID;
-import static frb.axeron.shared.ShizukuApiConstant.USER_SERVICE_ARG_TOKEN;
+import static frb.phant0m.shared.ShizukuApiConstant.USER_SERVICE_ARG_PGID;
+import static frb.phant0m.shared.ShizukuApiConstant.USER_SERVICE_ARG_TOKEN;
 
 import android.content.IContentProvider;
 import android.os.Build;
@@ -11,10 +11,10 @@ import android.os.Looper;
 
 import java.util.Locale;
 
-import frb.axeron.server.ServerConstants;
-import frb.axeron.server.UserService;
-import frb.axeron.server.util.IContentProviderCompat;
-import frb.axeron.server.util.Logger;
+import frb.phant0m.server.ServerConstants;
+import frb.phant0m.server.UserService;
+import frb.phant0m.server.util.IContentProviderCompat;
+import frb.phant0m.server.util.Logger;
 import kotlin.Triple;
 import moe.shizuku.api.BinderContainer;
 import rikka.hidden.compat.ActivityManagerApis;
@@ -26,7 +26,7 @@ public class ServiceStarter {
     private static final String EXTRA_BINDER = "moe.shizuku.privileged.api.intent.extra.BINDER";
     private static final Logger LOGGER = new Logger(TAG);
     private static final String USER_SERVICE_CMD_FORMAT = "(CLASSPATH='%s' %s%s /system/bin " +
-            "--nice-name='%s' frb.axeron.starter.ServiceStarter " +
+            "--nice-name='%s' frb.phant0m.starter.ServiceStarter " +
             "--token='%s' --package='%s' --class='%s' --uid=%d%s --pgid=$$)&";
     // DeathRecipient will automatically be unlinked when all references to the
     // binder is dropped, so we hold the reference here.

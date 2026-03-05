@@ -1,4 +1,4 @@
-package frb.axeron.reignite
+package xyz.lazyghosty.phant0m.reignite
 
 object SystemProp {
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AxManager</string>
+    <string name="app_name">Phant0m</string>
     <string name="home_running">Berjalan</string>
     <string name="notification_warn_miui">Pengguna MIUI mungkin perlu mengubah gaya notifikasi menjadi \"Android\" dari \"Notifikasi\" - \"Naungan notifikasi\" di pengaturan sistem.</string>
     <string name="notification_warn_miui_2">Jika tidak, Anda mungkin tidak dapat memasukkan kode penyandingan dari notifikasi.</string>
@@ -7,7 +7,7 @@
     <string name="secure_settings">Pengaturan Aman</string>
     <string name="system_settings">Pengaturan Sistem</string>
     <string name="android_properties">Properti Android</string>
-    <string name="axeron_environment">Lingkungan Axeron</string>
+    <string name="phant0m_environment">Lingkungan Phant0m</string>
     <string name="search_label">Cari</string>
     <string name="home">Beranda</string>
     <string name="privilege">Hak Istimewa</string>
@@ -34,12 +34,12 @@
     <string name="plugin_author">Penulis</string>
     <string name="plugin_id">ID</string>
     <string name="plugin_version_code">KodeVersi</string>
-    <string name="plugin_axeron_support">DukunganAxeron</string>
+    <string name="plugin_phant0m_support">DukunganPhant0m</string>
     <string name="plugin_update_json">UpdateJson</string>
     <string name="plugin_update_json_empty">Kosong</string>
     <string name="ignite">Ignite</string>
     <string name="what_is_ignite">Apa Itu Ignite?</string>
-    <string name="what_is_ignite_msg"><![CDATA[Ignite adalah metode pengganti reboot di AxManager, Anda dapat melakukan ignite di Beranda > Reignite]]></string>
+    <string name="what_is_ignite_msg"><![CDATA[Ignite adalah metode pengganti reboot di Phant0m, Anda dapat melakukan ignite di Beranda > Reignite]]></string>
     <string name="understand">Saya Mengerti</string>
     <string name="re_ignite_now">Re-ignite sekarang</string>
     <string name="install">Instal</string>
@@ -71,14 +71,14 @@
     <string name="connect_tcp_debugging">Hubungkan ke TCP</string>
     <string name="stop_tcp_debugging">Hentikan TCP</string>
     <string name="enable_wireless_debugging">Aktifkan Wireless Debugging</string>
-    <string name="enable_wireless_debugging_msg">Silakan aktifkan \"Wireless debugging\" di \"Opsi pengembang\". \"Wireless debugging\" otomatis dinonaktifkan saat jaringan berubah.\n\nCatatan, jangan menonaktifkan \"Opsi pengembang\" atau \"USB debugging\", jika tidak AxManager akan terhenti.</string>
+    <string name="enable_wireless_debugging_msg">Silakan aktifkan \"Wireless debugging\" di \"Opsi pengembang\". \"Wireless debugging\" otomatis dinonaktifkan saat jaringan berubah.\n\nCatatan, jangan menonaktifkan \"Opsi pengembang\" atau \"USB debugging\", jika tidak Phant0m akan terhenti.</string>
     <string name="open_developer_opt">Pengembang</string>
     <string name="step_by_step">Langkah demi Langkah</string>
     <string name="instruction">Instruksi</string>
     <string name="enable_notification">Aktifkan Notifikasi</string>
     <string name="start_pairing">Mulai Penyandingan</string>
     <string name="activate_by_root">Mulai (untuk perangkat root)</string>
-    <string name="activate_by_root_msg"><![CDATA[Selain itu, AxManager dapat dimulai secara otomatis saat booting. Jika tidak, silakan periksa apakah sistem atau alat pihak ketiga membatasi AxManager.<br>Anda dapat merujuk ke %s.]]></string>
+    <string name="activate_by_root_msg"><![CDATA[Selain itu, Phant0m dapat dimulai secara otomatis saat booting. Jika tidak, silakan periksa apakah sistem atau alat pihak ketiga membatasi Phant0m.<br>Anda dapat merujuk ke %s.]]></string>
     <string name="adb_tcp_not_ready">ADB TCP belum siap pada port %d</string>
     <string name="adb_tcp_stopped">ADB TCP Berhasil Dihentikan</string>
     <string name="failed_to_stop_adb_tcp">Gagal menghentikan ADB TCP</string>
@@ -120,9 +120,9 @@
     <string name="failed">Gagal</string>
     <string name="idle">Siaga</string>
     <string name="support_me">Dukung Saya</string>
-    <string name="support_me_msg">AxManager sepenuhnya gratis dan open-source. Jika menurut Anda ini berguna, silakan ikuti proyek ini dan pertimbangkan untuk memberikan bintang di GitHub.</string>
-    <string name="learn_more">Pelajari AxManager</string>
-    <string name="learn_more_msg">Pelajari cara menggunakan AxManager dan cara membuat plugin</string>
+    <string name="support_me_msg">Phant0m sepenuhnya gratis dan open-source. Jika menurut Anda ini berguna, silakan ikuti proyek ini dan pertimbangkan untuk memberikan bintang di GitHub.</string>
+    <string name="learn_more">Pelajari Phant0m</string>
+    <string name="learn_more_msg">Pelajari cara menggunakan Phant0m dan cara membuat plugin</string>
     <string name="updating">Memperbarui…</string>
     <string name="server_updating_version" formatted="false"><![CDATA[Memperbarui: %d > %d]]></string>
     <string name="version_pid" formatted="false">Versi: %d | Pid: %d</string>
@@ -131,7 +131,7 @@
     <string name="home_need_fix">Perlu langkah tambahan</string>
     <string name="home_need_fix_msg">Klik untuk melihat cara memperbaikinya</string>
     <string name="home_not_running">Perlu Aktivasi</string>
-    <string name="home_not_running_msg">Klik untuk mengaktivasi AxManager</string>
+    <string name="home_not_running_msg">Klik untuk mengaktivasi Phant0m</string>
     <string name="home_update">Perlu Re-Aktivasi</string>
     <string name="new_version_available">Versi baru %s tersedia, klik untuk memperbarui.</string>
     <string name="android_version">Versi Android</string>
@@ -144,7 +144,7 @@
     <string name="search_label_apps">Cari Aplikasi</string>
     <string name="quick_shell">QuickShell</string>
     <string name="quick_shell_short">QShell</string>
-    <string name="quick_shell_not_supported">Silakan aktivasi AxManager terlebih dahulu</string>
+    <string name="quick_shell_not_supported">Silakan aktivasi Phant0m terlebih dahulu</string>
     <string name="save">Simpan</string>
     <string name="exec">Jalankan</string>
     <string name="send">Kirim</string>
@@ -161,10 +161,10 @@
     <string name="shell_restriction_desc">Fitur ini akan membatasi pemrosesan latar belakang.</string>
     <string name="compat_mode">Mode Kompatibilitas</string>
     <string name="compat_mode_desc">Anda akan menggunakan busybox untuk mencegah perintah yang tidak didukung.</string>
-    <string name="axeron_permission">Cegat AX-Permission</string>
-    <string name="axeron_permission_desc">Cegat manajer izin yang dibangun di atas Shizuku-API menggunakan Ax-Environment</string>
+    <string name="phant0m_permission">Cegat AX-Permission</string>
+    <string name="phant0m_permission_desc">Cegat manajer izin yang dibangun di atas Shizuku-API menggunakan Ax-Environment</string>
     <string name="tcp_mode">Mode TCP</string>
-    <string name="tcp_mode_desc">Memungkinkan AxManager untuk memulai ulang tanpa Wi-Fi (AxManager harus pernah dimulai sekali sejak booting)</string>
+    <string name="tcp_mode_desc">Memungkinkan Phant0m untuk memulai ulang tanpa Wi-Fi (Phant0m harus pernah dimulai sekali sejak booting)</string>
     <string name="invalid_port">Port harus antara 1024 dan 65535</string>
     <string name="reactive_to_apply">Re-Aktivasi untuk menerapkan perubahan</string>
     <string name="active_on_boot">Aktifkan saat Booting</string>
@@ -173,17 +173,17 @@
     <string name="please_wait">Harap tunggu…</string>
     <string name="view_command_message">`%s`\n\nAda beberapa pertimbangan lain, harap konfirmasi bahwa Anda telah membaca bantuan terlebih dahulu.</string>
     <string name="activate_by_computer">Mulai dengan menghubungkan ke komputer</string>
-    <string name="activate_by_computer_desc">Untuk perangkat tanpa root, Anda perlu menggunakan adb untuk memulai AxManager (memerlukan koneksi komputer). Proses ini perlu diulangi setiap kali perangkat dimulai ulang.</string>
+    <string name="activate_by_computer_desc">Untuk perangkat tanpa root, Anda perlu menggunakan adb untuk memulai Phant0m (memerlukan koneksi komputer). Proses ini perlu diulangi setiap kali perangkat dimulai ulang.</string>
     <string name="activate_by_wireless">Mulai melalui Wireless Debugging</string>
-    <string name="activate_by_wireless_desc">Pada Android 11 atau lebih baru, Anda dapat mengaktifkan Wireless debugging dan memulai AxManager langsung dari perangkat Anda, tanpa terhubung ke komputer.\n\nSilakan lihat panduan langkah demi langkah terlebih dahulu.</string>
+    <string name="activate_by_wireless_desc">Pada Android 11 atau lebih baru, Anda dapat mengaktifkan Wireless debugging dan memulai Phant0m langsung dari perangkat Anda, tanpa terhubung ke komputer.\n\nSilakan lihat panduan langkah demi langkah terlebih dahulu.</string>
     <string name="view_command">Lihat Perintah</string>
     <string name="share_command">Bagikan Perintah</string>
-    <string name="active_on_boot_desc">Otomatis aktivasi AxManager saat booting (Root / ADB pada Android 11+ (Eksperimental))</string>
+    <string name="active_on_boot_desc">Otomatis aktivasi Phant0m saat booting (Root / ADB pada Android 11+ (Eksperimental))</string>
     <string name="ignite_when_relog">Relog untuk Ignite</string>
-    <string name="ignite_when_relog_desc">Saat Anda masuk kembali, AxManager akan Re-Ignite</string>
-    <string name="reset_path">Reset AxManager</string>
+    <string name="ignite_when_relog_desc">Saat Anda masuk kembali, Phant0m akan Re-Ignite</string>
+    <string name="reset_path">Reset Phant0m</string>
     <string name="reset_path_desc">Tindakan ini akan menonaktifkan dan menghapus semua plugin Anda</string>
-    <string name="ask_reset_path">Reset AxManager Sekarang?</string>
+    <string name="ask_reset_path">Reset Phant0m Sekarang?</string>
     <string name="ask_reset_path_desc">Tindakan ini akan menonaktifkan dan menghapus semua plugin Anda\n\ndi %s</string>
     <string name="reset">Reset</string>
     <string name="settings_editor">Editor Pengaturan</string>

@@ -1,4 +1,4 @@
-package frb.axeron.adb.util
+package xyz.lazyghosty.phant0m.adb.util
 
 import android.content.Context
 import android.net.ConnectivityManager

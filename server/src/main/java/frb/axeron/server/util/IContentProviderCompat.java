@@ -1,4 +1,4 @@
-package frb.axeron.server.util;
+package xyz.lazyghosty.phant0m.server.util;
 
 import android.content.AttributionSource;
 import android.content.IContentProvider;

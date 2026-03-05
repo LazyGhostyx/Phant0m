@@ -8,10 +8,10 @@ plugins {
 }
 
 android {
-    namespace = "frb.axeron.manager"
+    namespace = "xyz.lazyghosty.phant0m"
 
     defaultConfig {
-        applicationId = "frb.axeron.manager"
+        applicationId = "xyz.lazyghosty.phant0m"
     }
 
     buildTypes {
@@ -37,7 +37,7 @@ android {
     applicationVariants.all {
         outputs.all {
             val outputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-            outputImpl.outputFileName = "AxManager_v${versionName}_${versionCode}-${buildType.name}.apk"
+            outputImpl.outputFileName = "Phant0m_v${versionName}_${versionCode}-${buildType.name}.apk"
         }
     }
 

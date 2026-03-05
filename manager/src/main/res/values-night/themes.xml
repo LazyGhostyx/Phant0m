@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AxManager" parent="android:Theme.Material.NoActionBar">
+    <style name="Theme.Phant0m" parent="android:Theme.Material.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/orange</item>
     </style>
 
-    <style name="Theme.AxManager.WebUI" parent="Theme.AxManager" />
+    <style name="Theme.Phant0m.WebUI" parent="Theme.Phant0m" />
 </resources>

@@ -1,4 +1,4 @@
-package frb.axeron.adb
+package xyz.lazyghosty.phant0m.adb
 
 import android.app.ForegroundServiceStartNotAllowedException
 import android.app.Notification
@@ -16,8 +16,8 @@ import android.provider.Settings
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
-import frb.axeron.api.core.AxeronSettings
-import frb.axeron.api.core.Starter
+import frb.phant0m.api.core.Phant0mSettings
+import frb.phant0m.api.core.Starter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -157,11 +157,11 @@ class AdbPairingService : Service() {
         CoroutineScope(Dispatchers.IO).launch {
 
             val keyStore = PreferenceAdbKeyStore(
-                AxeronSettings.getPreferences(),
+                Phant0mSettings.getPreferences(),
                 Settings.Global.getString(contentResolver, Starter.KEY_PAIR)
             )
             val key = try {
-                AdbKey(keyStore, "axeron")
+                AdbKey(keyStore, "phant0m")
             } catch (e: Throwable) {
                 e.printStackTrace()
                 return@launch
@@ -189,7 +189,7 @@ class AdbPairingService : Service() {
             Log.i(TAG, "Pair succeed")
 
             title = "Pairing successfully"
-            text = "You can start AxeronService now"
+            text = "You can start Phant0mService now"
 
             stopSearch()
         } else {
@@ -221,7 +221,7 @@ class AdbPairingService : Service() {
             NOTIFICATION_ID,
             Notification.Builder(this, NOTIFICATION_CHANNEL)
                 .setColor(getColor(R.color.notification))
-                .setSmallIcon(R.drawable.ic_axeron)
+                .setSmallIcon(R.drawable.ic_phant0m)
                 .setContentTitle(title)
                 .setContentText(text)
                 .apply {
@@ -315,7 +315,7 @@ class AdbPairingService : Service() {
     private val searchingNotification by unsafeLazy {
         Notification.Builder(this, NOTIFICATION_CHANNEL)
             .setColor(getColor(R.color.notification))
-            .setSmallIcon(R.drawable.ic_axeron)
+            .setSmallIcon(R.drawable.ic_phant0m)
             .setContentTitle("Searching for pairing service")
             .addAction(stopNotificationAction)
             .build()
@@ -325,7 +325,7 @@ class AdbPairingService : Service() {
         return Notification.Builder(this, NOTIFICATION_CHANNEL)
             .setColor(getColor(R.color.notification))
             .setContentTitle("Pairing service found")
-            .setSmallIcon(R.drawable.ic_axeron)
+            .setSmallIcon(R.drawable.ic_phant0m)
             .addAction(replyNotificationAction(port))
             .build()
     }
@@ -334,7 +334,7 @@ class AdbPairingService : Service() {
         Notification.Builder(this, NOTIFICATION_CHANNEL)
             .setColor(getColor(R.color.notification))
             .setContentTitle("Pairing in progress")
-            .setSmallIcon(R.drawable.ic_axeron)
+            .setSmallIcon(R.drawable.ic_phant0m)
             .build()
     }
 

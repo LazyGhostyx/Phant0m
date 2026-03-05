@@ -1,4 +1,4 @@
-package frb.axeron.server.util
+package xyz.lazyghosty.phant0m.server.util
 
 fun flattenOneLevel(map: Map<String, Any?>, separator: String = "."): Map<String, Any?> {
     val result = mutableMapOf<String, Any?>()

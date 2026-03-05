@@ -1,4 +1,4 @@
-package frb.axeron.server.shell
+package xyz.lazyghosty.phant0m.server.shell
 
 import android.app.Activity
 import android.os.Bundle

@@ -7,7 +7,7 @@
 
     <application>
         <service
-            android:name="frb.axeron.adb.AdbPairingService"
+            android:name="frb.phant0m.adb.AdbPairingService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="shortService"

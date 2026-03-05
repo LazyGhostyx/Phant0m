@@ -1,4 +1,4 @@
-package frb.axeron.server.shell
+package xyz.lazyghosty.phant0m.server.shell
 
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
@@ -8,8 +8,8 @@ import android.content.Intent
 import android.os.PowerManager
 import android.provider.Settings
 import androidx.core.net.toUri
-import frb.axeron.api.SystemServiceHelper.getSystemService
-import frb.axeron.server.ServerConstants
+import frb.phant0m.api.SystemServiceHelper.getSystemService
+import frb.phant0m.server.ServerConstants
 
 
 class BinderRequestReceiver : BroadcastReceiver() {

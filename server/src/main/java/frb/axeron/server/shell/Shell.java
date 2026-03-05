@@ -1,37 +1,37 @@
-package frb.axeron.server.shell;
+package xyz.lazyghosty.phant0m.server.shell;
 
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.IBinder;
 
-import frb.axeron.api.Axeron;
-import frb.axeron.shared.AxeronApiConstant;
+import frb.phant0m.api.Phant0m;
+import frb.phant0m.shared.Phant0mApiConstant;
 import rikka.rish.Rish;
 import rikka.rish.RishConfig;
 
 public class Shell extends Rish {
 
     public static void main(String[] args, String packageName, IBinder binder, Handler handler) {
-        RishConfig.init(binder, AxeronApiConstant.server.BINDER_DESCRIPTOR, 30000);
-        Axeron.onBinderReceived(binder, packageName);
-        Axeron.addBinderReceivedListenerSticky(() -> {
+        RishConfig.init(binder, Phant0mApiConstant.server.BINDER_DESCRIPTOR, 30000);
+        Phant0m.onBinderReceived(binder, packageName);
+        Phant0m.addBinderReceivedListenerSticky(() -> {
             handler.post(() -> new Shell().start(args));
         });
     }
 
     @Override
     public void requestPermission(Runnable onGrantedRunnable) {
-        if (Axeron.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
+        if (Phant0m.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
             onGrantedRunnable.run();
-        } else if (Axeron.shouldShowRequestPermissionRationale()) {
+        } else if (Phant0m.shouldShowRequestPermissionRationale()) {
             System.err.println("Permission denied");
             System.err.flush();
             System.exit(1);
         } else {
-            Axeron.addRequestPermissionResultListener(new Axeron.OnRequestPermissionResultListener() {
+            Phant0m.addRequestPermissionResultListener(new Phant0m.OnRequestPermissionResultListener() {
                 @Override
                 public void onRequestPermissionResult(int requestCode, int grantResult) {
-                    Axeron.removeRequestPermissionResultListener(this);
+                    Phant0m.removeRequestPermissionResultListener(this);
 
                     if (grantResult == PackageManager.PERMISSION_GRANTED) {
                         onGrantedRunnable.run();
@@ -42,7 +42,7 @@ public class Shell extends Rish {
                     }
                 }
             });
-            Axeron.requestPermission(0);
+            Phant0m.requestPermission(0);
         }
     }
 }

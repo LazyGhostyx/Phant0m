@@ -1,4 +1,4 @@
-package frb.axeron.reignite
+package xyz.lazyghosty.phant0m.reignite
 
 import android.ddm.DdmHandleAppName
 import android.system.ErrnoException
@@ -10,10 +10,10 @@ object Igniter {
 
     private var VERSION = "v1"
 
-    private val AXERONDIR = System.getenv("AXERONDIR")
-    private val PLUGINS_DIR = File("$AXERONDIR/plugins")
-    private val PLUGINS_UPDATE_DIR = File("$AXERONDIR/plugins_update")
-    private val AXERONXBIN = File("$AXERONDIR/xbin")
+    private val PHANT0MDIR = System.getenv("PHANT0MDIR")
+    private val PLUGINS_DIR = File("$PHANT0MDIR/plugins")
+    private val PLUGINS_UPDATE_DIR = File("$PHANT0MDIR/plugins_update")
+    private val PHANT0MXBIN = File("$PHANT0MDIR/xbin")
 
     private var DEBUG = false
 
@@ -25,9 +25,9 @@ object Igniter {
         val debug = args.firstOrNull() == "true"
         DEBUG = debug
 
-        DdmHandleAppName.setAppName("axeron_plugin_igniter", 0)
-        Log.i("test", "AXERON Plugin Manager ($VERSION)")
-        println("AXERON Plugin Manager ($VERSION)")
+        DdmHandleAppName.setAppName("phant0m_plugin_igniter", 0)
+        Log.i("test", "PHANT0M Plugin Manager ($VERSION)")
+        println("PHANT0M Plugin Manager ($VERSION)")
 
         cleanUpdateDir()
         mainLoop()
@@ -160,7 +160,7 @@ object Igniter {
     }
 
     private fun startService(name: String, service: File) {
-        val tag = "axeron.plugin.$name"
+        val tag = "phant0m.plugin.$name"
         val log = logPipe(tag)
         val standalone = isStandalone(service)
 
@@ -213,7 +213,7 @@ object Igniter {
             )
         }
         unlinkBin(bin)
-        File("$AXERONDIR/plugins/$name").deleteRecursively()
+        File("$PHANT0MDIR/plugins/$name").deleteRecursively()
     }
 
     // ===============================
@@ -222,9 +222,9 @@ object Igniter {
     private fun linkBin(bin: File) {
         if (!bin.isDirectory) return
 
-        AXERONXBIN.mkdirs()
+        PHANT0MXBIN.mkdirs()
         bin.listFiles()?.forEach { src ->
-            val dst = File(AXERONXBIN, src.name)
+            val dst = File(PHANT0MXBIN, src.name)
 
             try {
                 if (dst.exists()) {
@@ -244,11 +244,11 @@ object Igniter {
     private fun unlinkBin(bin: File) {
         if (!bin.exists()) return
         bin.listFiles()?.forEach { src ->
-            val dst = File(AXERONXBIN, src.name)
+            val dst = File(PHANT0MXBIN, src.name)
             if (!dst.exists()) return@forEach
             if (Os.readlink(dst.absolutePath) == src.absolutePath) {
                 println(" - Unlinked : ${dst.absolutePath}")
-                File(AXERONXBIN, src.name).delete()
+                File(PHANT0MXBIN, src.name).delete()
             }
         }
     }
